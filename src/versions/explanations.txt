@@ -1,0 +1,26 @@
+
+Dropout:
+
+Dropout Layers: Added Dropout(0.2) after each GRU layer. This will randomly drop 20% of the units during training, helping to prevent the model from overfitting.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Embedding dimention
+
+Embedding Dimension: Increased to 256 to allow richer representations of the lyrics vocabulary.
+GRU Units: Increased the units in each GRU layer to 256 for more model capacity.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LR Scheduler
+
+ReduceLROnPlateau: This callback reduces the learning rate by a factor of 0.5 if the loss hasn’t improved for 2 consecutive epochs, with a minimum learning rate of 1e-5.
+Callback Integration: The scheduler is included in the callbacks list when training the model, so it dynamically adjusts the learning rate based on the monitored loss metric.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data Generator
+
+LyricsDataGenerator Class: Loads data in chunks when using a generator, minimizing memory usage.
+should_use_generator Function: Checks if the generator should be used based on file size or a flag.
+train Function: Determines if the dataset should be loaded fully or in chunks based on use_generator.
